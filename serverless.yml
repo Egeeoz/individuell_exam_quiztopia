@@ -6,11 +6,67 @@ service: q
 provider:
   name: aws
   runtime: nodejs20.x
+  region: eu-north-1
+  iam:
+    role: arn:aws:iam::586794471369:role/serverless
+
+package:
+  individually: true
 
 functions:
-  hello:
-    handler: handler.hello
+  userSignUp:
+    handler: functions/userSignup/index.handler
     events:
       - httpApi:
-          path: /
+          path: /signup
+          method: post
+  userLogin:
+    handler: functions/userLogin/index.handler
+    events:
+      - httpApi:
+          path: /login
+          method: post
+  createQuiz:
+    handler: functions/createQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz
+          method: post
+  getQuizzes:
+    handler: functions/getQuizzes/index.handler
+    events:
+      - httpApi:
+          path: /quiz
           method: get
+  updateQuiz:
+    handler: functions/updateQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz
+          method: put
+  deleteQuiz:
+    handler: functions/deleteQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz
+          method: delete
+  getQuiz:
+    handler: functions/getQuiz/index.handler
+    events:
+      - httpApi:
+          path: /quiz/{id}
+          method: get
+
+resources:
+  Resources:
+    notesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: quiz
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
