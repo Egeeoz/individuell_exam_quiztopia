@@ -1,10 +1,8 @@
 const { ScanCommand } = require('@aws-sdk/lib-dynamodb');
 const { db } = require('../../services/db');
 const { sendResponse, sendError } = require('../../responses/index');
-const middy = require('@middy/core');
-const { validateToken } = require('../../middleware/auth');
 
-const getQuizzesHandler = async () => {
+exports.handler = async () => {
   try {
     const scanParams = {
       TableName: 'quiz',
@@ -29,5 +27,3 @@ const getQuizzesHandler = async () => {
     return sendError(500, 'Internal server error');
   }
 };
-
-exports.handler = middy(getQuizzesHandler).use(validateToken);
