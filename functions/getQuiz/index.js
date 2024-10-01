@@ -7,6 +7,10 @@ const { db } = require('../../services/db');
 const getQuizHandler = async (event) => {
   const quizId = event.pathParameters?.id;
 
+  if (!quizId) {
+    return sendError(400, 'Missing quiz ID');
+  }
+
   try {
     const scanParams = {
       TableName: 'quiz',
