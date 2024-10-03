@@ -6,7 +6,7 @@ const { sendResponse, sendError } = require('../../responses/index');
 
 const deleteQuizHandler = async (event) => {
   const id = event.pathParameters?.id;
-  const userId = event.id;
+  const username = event.username;
 
   if (!id) {
     return sendError(400, 'Missing quiz ID');
@@ -22,11 +22,11 @@ const deleteQuizHandler = async (event) => {
     const result = await db.send(getCommand);
 
     if (!result.Item) {
-      return sendError(400, 'Quiz not found');
+      return sendError(404, 'Quiz not found');
     }
 
-    if (result.Item.creator !== userId) {
-      return sendError(400, 'You do not have permission to delete this quiz');
+    if (result.Item.creator !== username) {
+      return sendError(403, 'You do not have permission to delete this quiz');
     }
 
     const deleteParams = {

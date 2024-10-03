@@ -27,7 +27,7 @@ exports.handler = async (event) => {
     const result = await db.send(scanCommand);
 
     if (result.Items && result.Items.length > 0) {
-      return sendError(400, 'Username already exists, pick another Username');
+      return sendError(403, 'Username already exists, pick another Username');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);

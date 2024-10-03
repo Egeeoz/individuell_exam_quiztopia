@@ -11,8 +11,6 @@ exports.handler = async () => {
     const scanCommand = new ScanCommand(scanParams);
     const result = await db.send(scanCommand);
 
-    console.log('Raw items from DynamoDB:', result.Items);
-
     const quizzes = result.Items.filter(
       (item) => item.title && item.creator
     ).map((item) => ({
@@ -20,6 +18,10 @@ exports.handler = async () => {
       title: item.title,
       creator: item.creator,
     }));
+
+    if (quizzes.length === 0) {
+      return sendResponse('No quizzes');
+    }
 
     return sendResponse(quizzes);
   } catch (error) {

@@ -24,7 +24,7 @@ exports.handler = async (event) => {
     const result = await db.send(scanCommand);
 
     if (!result.Items.length) {
-      return sendError(401, 'No such user');
+      return sendError(404, 'No such user');
     }
 
     const user = result.Items[0];
