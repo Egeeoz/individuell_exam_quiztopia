@@ -6,6 +6,7 @@ const { sendResponse, sendError } = require('../../responses/index');
 
 const updateQuizHandler = async (event) => {
   const { quizId, title, questions } = JSON.parse(event.body);
+  const username = event.username;
 
   if (!quizId || !title || !questions?.length) {
     return sendError(400, 'Missing quizId, title, or questions array');
@@ -16,13 +17,15 @@ const updateQuizHandler = async (event) => {
       TableName: 'quiz',
       Key: { id: quizId },
     };
-    const { Item: existingQuiz } = await db.send(new GetCommand(getParams));
 
-    if (!existingQuiz) {
+    const getCommand = new GetCommand(getParams);
+    const result = await db.send(getCommand);
+
+    if (!result.Item) {
       return sendError(404, 'Quiz not found');
     }
 
-    if (existingQuiz.userId !== event.id) {
+    if (result.Item.creator !== username) {
       return sendError(403, 'You do not have permission to update this quiz');
     }
 
@@ -38,7 +41,9 @@ const updateQuizHandler = async (event) => {
     };
 
     const updateCommand = new UpdateCommand(updateParams);
-    const { Attributes: updatedQuiz } = await db.send(updateCommand);
+    const updateResult = await db.send(updateCommand);
+
+    const updatedQuiz = updateResult.Attributes;
 
     return sendResponse(updatedQuiz);
   } catch (error) {
