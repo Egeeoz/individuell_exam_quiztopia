@@ -14,16 +14,19 @@ exports.handler = async (event) => {
   try {
     const scanParams = {
       TableName: 'quiz',
-      FilterExpression: 'username = :username',
+      FilterExpression: '#username = :username',
+      ExpressionAttributeNames: {
+        '#username': 'username',
+      },
       ExpressionAttributeValues: {
-        ':username': { S: username },
+        ':username': username,
       },
     };
 
     const scanCommand = new ScanCommand(scanParams);
     const result = await db.send(scanCommand);
 
-    if (result.Items.length > 0) {
+    if (result.Items && result.Items.length > 0) {
       return sendError(400, 'Username already exists, pick another Username');
     }
 
