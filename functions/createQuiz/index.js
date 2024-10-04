@@ -16,7 +16,7 @@ const createQuizHandler = async (event) => {
     const quizId = uuidv4();
 
     if (!event.id || !event.username) {
-      throw new Error('Invalid token');
+      return sendError(404, 'Missing user token');
     }
 
     const quiz = {

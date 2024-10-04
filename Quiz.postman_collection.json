@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "52115cf5-fb95-4477-aebe-73d2a4fcd427",
+		"name": "Quiz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34095597"
+	},
+	"item": [
+		{
+			"name": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Ege\",\r\n    \"password\": \"Ege123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/signup",
+					"protocol": "https",
+					"host": [
+						"144ghj4asc",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Ege\",\r\n    \"password\": \"Ege123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/login",
+					"protocol": "https",
+					"host": [
+						"144ghj4asc",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/quiz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1ZmQyZjA0LTc0OTEtNGI4OC1hZjNhLWFkMTM0ZjA0Njc3OSIsInVzZXJuYW1lIjoiRWdlIiwiaWF0IjoxNzI3NzAzMjE3LCJleHAiOjE3Mjc3MDY4MTd9.0WSU6SNmAahxvqMrgdI1bkB5exHnOA0wUkFeB5FyrIA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"General Knowledge Quiz\",\r\n  \"questions\": [\r\n    {\r\n      \"question\": \"What is the capital of France?\",\r\n      \"answer\": \"Paris\"\r\n    },\r\n    {\r\n      \"question\": \"What is 2 + 2?\",\r\n      \"answer\": \"4\"\r\n    },\r\n    {\r\n      \"question\": \"Who wrote 'To Kill a Mockingbird'?\",\r\n      \"answer\": \"Harper Lee\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/quiz",
+					"protocol": "https",
+					"host": [
+						"144ghj4asc",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/quiz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1ZmQyZjA0LTc0OTEtNGI4OC1hZjNhLWFkMTM0ZjA0Njc3OSIsInVzZXJuYW1lIjoiRWdlIiwiaWF0IjoxNzI3NzAzMjE3LCJleHAiOjE3Mjc3MDY4MTd9.0WSU6SNmAahxvqMrgdI1bkB5exHnOA0wUkFeB5FyrIA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/quiz",
+					"protocol": "https",
+					"host": [
+						"144ghj4asc",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/quiz/{id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1ZmQyZjA0LTc0OTEtNGI4OC1hZjNhLWFkMTM0ZjA0Njc3OSIsInVzZXJuYW1lIjoiRWdlIiwiaWF0IjoxNzI3Nzc1ODEyLCJleHAiOjE3Mjc3Nzk0MTJ9.nOW7Amm5jSH5kAtFSTmxmLKMuk4x8N6DA6F9YPZ-IVw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/quiz/{id}",
+					"protocol": "https",
+					"host": [
+						"144ghj4asc",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/quiz/58e7df5b-775c-4520-8200-fd1db3e76f35",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1ZmQyZjA0LTc0OTEtNGI4OC1hZjNhLWFkMTM0ZjA0Njc3OSIsInVzZXJuYW1lIjoiRWdlIiwiaWF0IjoxNzI3Nzc1ODEyLCJleHAiOjE3Mjc3Nzk0MTJ9.nOW7Amm5jSH5kAtFSTmxmLKMuk4x8N6DA6F9YPZ-IVw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://144ghj4asc.execute-api.eu-north-1.amazonaws.com/quiz/58e7df5b-775c-4520-8200-fd1db3e76f35",
+					"protocol": "https",
+					"host": [
+						"144ghj4asc",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"58e7df5b-775c-4520-8200-fd1db3e76f35"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
